@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A&J Gulf Blvd Capital — Private Capital. Proven Execution.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1E3F;
+    --navy-mid: #162D56;
+    --navy-light: #1E3E72;
+    --gold: #C8A84B;
+    --gold-light: #E2C97E;
+    --gold-pale: #F5EDD0;
+    --offwhite: #F7F6F2;
+    --white: #FFFFFF;
+    --text-dark: #0D1B2A;
+    --text-mid: #3D4F66;
+    --text-muted: #6B7D96;
+    --border: #DDE3ED;
+    --radius: 4px;
+    --radius-lg: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--navy);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(200,168,75,0.3);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 40px;
+    height: 40px;
+    background: var(--gold);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--navy);
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .nav-logo-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-text span {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 9px 20px;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: 0.2s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px;
+    left: 0; right: 0;
+    background: var(--navy);
+    z-index: 999;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(200,168,75,0.3);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-weight: 500;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a.nav-cta {
+    margin-top: 12px;
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 10px 24px;
+    border-radius: var(--radius);
+    border-bottom: none;
+  }
+
+  /* PAGES */
+  .page { display: none; padding-top: 68px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* HERO */
+  .hero {
+    background: var(--white);
+    padding: 100px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(200,168,75,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(200,168,75,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,168,75,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.1;
+    color: var(--navy);
+    font-weight: 700;
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    margin-top: 5rem;
+  }
+  .hero-stat {
+    background: var(--offwhite);
+    padding: 2rem 2.5rem;
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 2rem;
+  }
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-alt { background: var(--offwhite); }
+  .section-dark { background: var(--navy); }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .section-label-dark { color: var(--gold); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    max-width: 600px;
+  }
+  .section-title-dark { color: var(--white); }
+  .section-intro {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+    line-height: 1.65;
+  }
+  .section-intro-dark { color: rgba(255,255,255,0.6); }
+
+  /* ADVANTAGE GRID */
+  .advantage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .advantage-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    background: var(--white);
+  }
+  .advantage-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .advantage-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gold-pale);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 20px;
+  }
+  .advantage-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+  }
+  .advantage-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* LOAN TABLE */
+  .table-wrap { overflow-x: auto; margin-top: 2rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 700px;
+  }
+  thead tr {
+    background: var(--navy);
+    color: var(--white);
+  }
+  thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--offwhite); }
+  tbody td {
+    padding: 14px 16px;
+    color: var(--text-mid);
+    vertical-align: middle;
+  }
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  .rate-badge {
+    display: inline-block;
+    background: var(--gold-pale);
+    color: #8B6914;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* PROPERTY TYPES */
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .property-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    background: var(--white);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .property-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .property-icon {
+    font-size: 28px;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .property-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .property-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* PROCESS */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0 2rem;
+    align-items: start;
+    position: relative;
+  }
+  .process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 60px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+  .step-num {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-content {
+    padding: 16px 0 48px;
+  }
+  .step-content h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .step-content p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 520px;
+  }
+
+  /* SPECIALTY */
+  .specialty-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .specialty-card {
+    background: rgba(200,168,75,0.07);
+    border: 1px solid rgba(200,168,75,0.25);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+  .specialty-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+  }
+  .specialty-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .specialty-list li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .specialty-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* PARAMS */
+  .params-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .param-card {
+    background: rgba(200,168,75,0.07);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .param-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .param-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* CHECKLIST */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 3rem;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+  .checklist-check {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--gold);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CONTACT FORM */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-detail-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .contact-detail-val {
+    font-size: 16px;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .contact-detail-val:hover { color: var(--navy-light); }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 11px 14px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #07121F;
+    border-top: 1px solid rgba(200,168,75,0.2);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .footer-brand { max-width: 300px; }
+  .footer-tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .footer-links-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .footer-links-col a {
+    display: block;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .footer-links-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+  }
+
+  /* BROKER */
+  .broker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .broker-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    background: var(--white);
+  }
+  .broker-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .broker-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ABOUT PILLARS */
+  .about-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    margin-top: 4rem;
+  }
+  .pillar {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+  .pillar h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .pillar p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* SUCCESS TOAST */
+  .toast {
+    display: none;
+    background: #1a3a1a;
+    border: 1px solid #2d6a2d;
+    color: #6fcf6f;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .toast.visible { display: block; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 60px 1.5rem 60px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .section { padding: 60px 1.5rem; }
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .specialty-grid { grid-template-columns: 1fr; }
+    .checklist-grid { grid-template-columns: 1fr; }
+    .process-step { grid-template-columns: 48px 1fr; }
+    .step-num { width: 48px; height: 48px; font-size: 18px; }
+    .process-step:not(:last-child)::after { left: 24px; top: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')" href="javascript:void(0)">
+      <div class="nav-logo-mark">A&J</div>
+      <div class="nav-logo-text">
+        <strong>Gulf Blvd Capital</strong>
+        <span>Private Capital. Proven Execution.</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+      <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+      <li><a href="javascript:void(0)" onclick="showPage('programs')">Loan Programs</a></li>
+      <li><a href="javascript:void(0)" onclick="showPage('specialty')">Specialty Finance</a></li>
+      <li><a href="javascript:void(0)" onclick="showPage('brokers')">Brokers</a></li>
+      <li><a href="javascript:void(0)" onclick="showPage('contact')" class="nav-cta">Apply Now</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="javascript:void(0)" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="javascript:void(0)" onclick="showPage('about');toggleMenu()">About</a>
+  <a href="javascript:void(0)" onclick="showPage('programs');toggleMenu()">Loan Programs</a>
+  <a href="javascript:void(0)" onclick="showPage('specialty');toggleMenu()">Specialty Finance</a>
+  <a href="javascript:void(0)" onclick="showPage('brokers');toggleMenu()">Brokers</a>
+  <a href="javascript:void(0)" onclick="showPage('contact');toggleMenu()" class="nav-cta">Apply Now</a>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Private Group Lending — All 50 States</div>
+      <h1>Construction &amp; Commercial Real Estate <em>Financing</em></h1>
+      <p class="hero-sub">Direct access to private capital for complex deals that traditional lenders won't touch. Fast decisions. Flexible underwriting. Reliable closings.</p>
+      <div class="hero-actions">
+        <a href="javascript:void(0)" onclick="showPage('contact')" class="btn-primary">Request a Term Sheet</a>
+        <a href="javascript:void(0)" onclick="showPage('programs')" class="btn-outline">View Loan Programs</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">$20M+</div>
+        <div class="hero-stat-label">Maximum Loan Size</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">30+</div>
+        <div class="hero-stat-label">Years Combined Experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">7–14</div>
+        <div class="hero-stat-label">Days to Close</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50</div>
+        <div class="hero-stat-label">States We Lend In</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">We are a direct lender — not a broker</h2>
+      <p class="section-intro">That distinction means faster decisions, greater flexibility, and one point of contact from application through funding.</p>
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <div class="advantage-icon">⚡</div>
+          <h3>Speed</h3>
+          <p>Close in as little as 7–14 days. No committee delays, no last-minute retrading.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">⚖️</div>
+          <h3>Flexible Underwriting</h3>
+          <p>We underwrite the deal, not just the borrower. Value-add, construction, and transitional assets all qualify.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">✅</div>
+          <h3>Certainty of Execution</h3>
+          <p>Conditional approvals issued upon review. No surprises at the closing table.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">🏗️</div>
+          <h3>Operator Experience</h3>
+          <p>Our principals have owned and operated commercial real estate, golf courses, marinas, and resort properties.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">🗺️</div>
+          <h3>Nationwide Platform</h3>
+          <p>We lend in all 50 states across all major commercial property types.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">🤝</div>
+          <h3>Broker Friendly</h3>
+          <p>We protect and compensate broker relationships on every transaction. Your fee is locked in upfront.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label">Asset Classes</div>
+      <h2 class="section-title">Property types we finance</h2>
+      <p class="section-intro">From conventional commercial to complex specialty assets, we have the underwriting depth to get your deal funded.</p>
+      <div class="property-grid">
+        <div class="property-card">
+          <span class="property-icon">🏢</span>
+          <h4>Office</h4>
+          <p>Class A, B &amp; C, suburban and urban</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🛍️</span>
+          <h4>Retail</h4>
+          <p>Strip centers, single-tenant NNN, anchored</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🏭</span>
+          <h4>Industrial</h4>
+          <p>Warehouse, flex, distribution, manufacturing</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🏘️</span>
+          <h4>Multifamily</h4>
+          <p>Apartment communities, value-add, new construction</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🏨</span>
+          <h4>Hospitality</h4>
+          <p>Hotels, motels, boutique resorts, extended stay</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">⛳</span>
+          <h4>Golf &amp; Clubs</h4>
+          <p>Golf courses, country clubs, private clubs</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">⚓</span>
+          <h4>Marina</h4>
+          <p>Marinas, waterfront, dry stack, resorts</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🏕️</span>
+          <h4>RV &amp; Self-Storage</h4>
+          <p>RV resorts, campgrounds, storage facilities</p>
+        </div>
+        <div class="property-card">
+          <span class="property-icon">🏗️</span>
+          <h4>Land Development</h4>
+          <p>Entitled and un-entitled land, subdivisions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-label">The Funding Process</div>
+      <h2 class="section-title">From application to funding</h2>
+      <p class="section-intro">A streamlined 5-step process designed for speed and transparency.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Application</h3>
+            <p>Submit your loan package with required documents. Our team confirms receipt same day.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Underwriting</h3>
+            <p>We review the deal, conduct due diligence, and evaluate the risk. We may request additional information.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Approval</h3>
+            <p>Conditional approval is issued. You receive a term sheet outlining all loan parameters.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Closing</h3>
+            <p>Final documents are prepared, executed, and funded. Our team coordinates every step.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Funding</h3>
+            <p>Funds are disbursed and your project moves forward. As fast as 7–14 days from submission.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-dark">
+    <div class="section-inner" style="text-align:center;">
+      <div class="section-label">Ready to Move Forward?</div>
+      <h2 class="section-title section-title-dark" style="max-width:100%;margin:0 auto 1rem;">Let's structure your deal</h2>
+      <p class="section-intro section-intro-dark" style="margin:0 auto 2.5rem;">Submit your loan package or reach out directly to discuss your project with our principals.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="javascript:void(0)" onclick="showPage('contact')" class="btn-primary">Request a Term Sheet</a>
+        <a href="tel:+17276216769" style="border:1px solid rgba(255,255,255,0.4);color:rgba(255,255,255,0.85);padding:14px 32px;border-radius:4px;font-weight:500;font-size:14px;text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;display:inline-block;">+1 (727) 621-6769</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end home -->
+
+<!-- ===================== ABOUT ===================== -->
+<div id="page-about" class="page">
+
+  <div class="hero" style="padding:80px 2rem 70px;">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">About A&J Gulf Blvd Capital</div>
+      <h1>Private Capital. <em>Proven Execution.</em></h1>
+      <p class="hero-sub">A private lending group built by operators — principals who have owned, developed, and financed commercial real estate, golf courses, marinas, and resort properties firsthand.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div style="max-width:760px;">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Depth that institutional lenders lack</h2>
+        <p style="font-size:17px;color:var(--text-mid);line-height:1.75;margin-bottom:1.25rem;">A&J Gulf Blvd Capital is a private lending group providing flexible financing solutions for commercial real estate and construction projects throughout the United States.</p>
+        <p style="font-size:17px;color:var(--text-mid);line-height:1.75;margin-bottom:1.25rem;">Our principals and lending partners bring over 30 years of combined experience in lending, underwriting, development, title services, and real estate finance — giving us the depth to move quickly and structure deals that traditional lenders can't.</p>
+        <p style="font-size:17px;color:var(--text-mid);line-height:1.75;">We are not a broker. We are a direct private lending group with capital partners ready to deploy. That distinction means faster decisions, greater flexibility, and a single point of contact from application through closing.</p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <h3>30+ Years Combined Experience</h3>
+          <p>Our principals and lending partners bring deep expertise in real estate, construction, and lending.</p>
+        </div>
+        <div class="pillar">
+          <h3>Direct Access to Capital</h3>
+          <p>We offer direct access to private capital — we move quickly and structure deals traditional lenders can't.</p>
+        </div>
+        <div class="pillar">
+          <h3>Fast, Flexible, Reliable</h3>
+          <p>We pride ourselves on fast decisions, flexible underwriting, and reliable closings on every transaction.</p>
+        </div>
+        <div class="pillar">
+          <h3>Relationship Driven</h3>
+          <p>We build long-term relationships by delivering honest advice and creative financing solutions tailored to each project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label">Our Advantage</div>
+      <h2 class="section-title">Why borrowers choose us</h2>
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <div class="advantage-icon">⚡</div>
+          <h3>Speed — 7 to 14 days to close</h3>
+          <p>No committee delays. Decisions are made by principals who understand the deal, not committees reading a memo.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">📐</div>
+          <h3>Flexibility — we underwrite the deal</h3>
+          <p>Value-add, construction, transitional, and specialty assets all qualify. We look at the project, not just the borrower's FICO.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">🔒</div>
+          <h3>Certainty of execution</h3>
+          <p>Conditional approvals issued upon review. No last-minute retrading or surprise conditions at closing.</p>
+        </div>
+        <div class="advantage-card">
+          <div class="advantage-icon">🏌️</div>
+          <h3>Operator experience</h3>
+          <p>Principals have owned and operated golf courses, marinas, resorts, and commercial properties — we speak your language.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== LOAN PROGRAMS ===================== -->
+<div id="page-programs" class="page">
+
+  <div class="hero" style="padding:80px 2rem 70px;">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Lending Matrix — Current as of May 2025</div>
+      <h1>Loan Programs &amp; <em>Rate Sheet</em></h1>
+      <p class="hero-sub">Competitive private lending rates across six core loan programs. Rates are subject to underwriting, property type, and sponsor strength.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-label">Lending Matrix</div>
+      <h2 class="section-title">Rate sheet &amp; loan structure</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Loan Amount</th>
+              <th>Term</th>
+              <th>Max LTV/LTC</th>
+              <th>Rate Range</th>
+              <th>Structure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Commercial Acquisition</td>
+              <td>$500K – $20M+</td>
+              <td>12–36 months</td>
+              <td>Up to 75% LTV</td>
+              <td><span class="rate-badge">8.50% – 11.50%</span></td>
+              <td>Interest Only</td>
+            </tr>
+            <tr>
+              <td>Construction Loans</td>
+              <td>$1M – $20M+</td>
+              <td>12–24 months</td>
+              <td>Up to 80% LTC</td>
+              <td><span class="rate-badge">9.50% – 12.50%</span></td>
+              <td>Draw Schedule</td>
+            </tr>
+            <tr>
+              <td>Bridge Loans</td>
+              <td>$500K – $20M+</td>
+              <td>6–24 months</td>
+              <td>Up to 75% LTV</td>
+              <td><span class="rate-badge">8.00% – 14.00%</span></td>
+              <td>Interest Only</td>
+            </tr>
+            <tr>
+              <td>Land Development</td>
+              <td>$1M – $20M+</td>
+              <td>12–36 months</td>
+              <td>Up to 60% LTV</td>
+              <td><span class="rate-badge">10.00% – 13.50%</span></td>
+              <td>Interest Only</td>
+            </tr>
+            <tr>
+              <td>Value-Add Commercial</td>
+              <td>$1M – $20M+</td>
+              <td>12–36 months</td>
+              <td>Up to 75% LTV</td>
+              <td><span class="rate-badge">8.50% – 12.00%</span></td>
+              <td>Interest Only</td>
+            </tr>
+            <tr>
+              <td>Multifamily Bridge</td>
+              <td>$1M – $20M+</td>
+              <td>12–36 months</td>
+              <td>Up to 75% LTV</td>
+              <td><span class="rate-badge">8.00% – 11.50%</span></td>
+              <td>Interest Only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">* Rates subject to underwriting, property type, market conditions, and sponsor strength. Subject to change without notice.</p>
+    </div>
+  </div>
+
+  <div class="section section-dark">
+    <div class="section-inner">
+      <div class="section-label" style="color:var(--gold);">Loan Parameters</div>
+      <h2 class="section-title section-title-dark">Standard loan parameters</h2>
+      <p class="section-intro section-intro-dark" style="margin-bottom:2.5rem;">Core parameters that apply across all loan programs.</p>
+      <div class="params-grid">
+        <div class="param-card">
+          <div class="param-label">Loan Amounts</div>
+          <div class="param-value">$500K – $20M+</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Loan-to-Value (LTV)</div>
+          <div class="param-value">Up to 75%</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Loan-to-Cost (LTC)</div>
+          <div class="param-value">Up to 80%</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Term</div>
+          <div class="param-value">6 – 36 Months</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Closing Speed</div>
+          <div class="param-value">7 – 14 Days</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Geographic Coverage</div>
+          <div class="param-value">All 50 States</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Interest Options</div>
+          <div class="param-value">Interest Only Available</div>
+        </div>
+        <div class="param-card">
+          <div class="param-label">Prepayment</div>
+          <div class="param-value">Flexible Options</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="section-inner">
+      <div class="section-label">Borrower Submission Checklist</div>
+      <h2 class="section-title">What to include with your submission</h2>
+      <p class="section-intro">Please provide the following documents with your loan package. Our team will acknowledge receipt and notify you of any additional requirements.</p>
+      <div class="checklist-grid">
+        <div class="checklist-item"><div class="checklist-check"></div>Completed Borrower Information Sheet</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Executive Summary / Project Overview</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Purchase Agreement or Contract (if applicable)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Rent Roll (if applicable)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Offering Memorandum (if applicable)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Property Photos</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Builder / General Contractor Information</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Construction Budget / Scope of Work</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Construction Plans / Drawings</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Recent Appraisal or Broker Opinion of Value</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Title Report (if available)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Organizational Documents (Entity Docs)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Personal Financial Statement (All Guarantors)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Credit Report (All Guarantors)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>Bank Statements — Last 3 Months (Business &amp; Personal)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>IRS Tax Returns — Last 2 Years (Business &amp; Personal)</div>
+        <div class="checklist-item"><div class="checklist-check"></div>List of Real Estate Owned</div>
+      </div>
+      <div style="margin-top:2rem;">
+        <a href="javascript:void(0)" onclick="showPage('contact')" class="btn-primary">Submit Your Package</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== SPECIALTY ===================== -->
+<div id="page-specialty" class="page">
+
+  <div class="hero" style="padding:80px 2rem 70px;">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Specialty Asset Finance Division</div>
+      <h1>Complex Assets Most Lenders <em>Won't Touch</em></h1>
+      <p class="hero-sub">Our principals have direct ownership and operating experience in hospitality, recreational, and destination properties. We understand the revenue dynamics, seasonality, and capital needs of each property type.</p>
+    </div>
+  </div>
+
+  <div class="section section-dark">
+    <div class="section-inner">
+      <div class="section-label" style="color:var(--gold);">Asset Classes</div>
+      <h2 class="section-title section-title-dark">Specialty finance programs</h2>
+      <p class="section-intro section-intro-dark">Capital solutions for assets that fall outside the scope of conventional lenders.</p>
+      <div class="specialty-grid">
+        <div class="specialty-card">
+          <h3>⛳ Golf Course &amp; Country Club Financing</h3>
+          <ul class="specialty-list">
+            <li>Acquisition financing for golf courses, private clubs, and country clubs nationwide</li>
+            <li>Recapitalization — refinance existing debt, return equity, or fund capital reserves</li>
+            <li>Clubhouse renovations: dining, pro shop, event space, and facility upgrades</li>
+            <li>Course improvements: irrigation, cart paths, bunker renovation, tee box construction</li>
+            <li>Membership restructuring — bridge capital during membership drives or equity restructuring</li>
+            <li>Operational turnarounds — short-term capital for distressed or underperforming club assets</li>
+          </ul>
+        </div>
+        <div class="specialty-card">
+          <h3>⚓ Marina &amp; Resort Financing</h3>
+          <ul class="specialty-list">
+            <li>Marina acquisitions and waterfront redevelopment</li>
+            <li>Dock expansions and dry stack storage</li>
+            <li>Fuel dock &amp; service upgrades</li>
+            <li>Boutique hotel acquisition and destination resort financing</li>
+            <li>RV resort development and campground financing</li>
+            <li>Mixed-use waterfront projects</li>
+          </ul>
+        </div>
+        <div class="specialty-card">
+          <h3>🏨 Destination Hospitality</h3>
+          <ul class="specialty-list">
+            <li>Boutique hotels and inns — acquisition and renovation</li>
+            <li>Destination resort development and redevelopment</li>
+            <li>Resort property recapitalization</li>
+            <li>Hospitality redevelopment and conversion projects</li>
+          </ul>
+        </div>
+        <div class="specialty-card">
+          <h3>🏕️ RV Resorts &amp; Member Facilities</h3>
+          <ul class="specialty-list">
+            <li>RV resort acquisition and development</li>
+            <li>Campground financing and expansion</li>
+            <li>Private clubs and member facility financing</li>
+            <li>Mixed-use resort community development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-label">Why Our Specialty Division Is Different</div>
+      <h2 class="section-title">We've sat in the operator's seat</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="about-pillars" style="margin-top:0;">
+        <div>
+          <p style="font-size:17px;color:var(--text-mid);line-height:1.75;margin-bottom:1rem;">The principals of A&J Gulf Blvd Capital have owned and operated multiple golf and country club properties. We understand membership revenue, food and beverage operations, maintenance requirements, and capital improvement planning.</p>
+          <p style="font-size:17px;color:var(--text-mid);line-height:1.75;">For marina and resort assets, we bring direct experience evaluating seasonal revenue, slip income, dry stack operations, and hospitality RevPAR dynamics — with the precision that general commercial lenders simply cannot match.</p>
+        </div>
+        <div class="about-pillars" style="margin-top:0;">
+          <div class="pillar">
+            <h3>Accurate Underwriting</h3>
+            <p>We model revenue properly — including seasonality, membership dues, F&B, and slip income.</p>
+          </div>
+          <div class="pillar">
+            <h3>Faster Decisions</h3>
+            <p>No learning curve. Our team understands the asset class before we open the file.</p>
+          </div>
+          <div class="pillar">
+            <h3>Creative Structure</h3>
+            <p>We structure loans around the cash flow realities of specialty assets, not generic CRE templates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== BROKERS ===================== -->
+<div id="page-brokers" class="page">
+
+  <div class="hero" style="padding:80px 2rem 70px;">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Broker Partnership Program</div>
+      <h1>We Protect and Reward <em>Our Broker Relationships</em></h1>
+      <p class="hero-sub">We welcome mortgage brokers, investment bankers, commercial real estate professionals, and capital advisors. Your reputation and client relationships are your most valuable assets — we protect them.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-label">Partnership Benefits</div>
+      <h2 class="section-title">What we offer broker partners</h2>
+      <div class="broker-grid">
+        <div class="broker-card">
+          <h3>🔒 Fee Protection</h3>
+          <p>Your compensation is agreed upon upfront and protected all the way through closing. No surprises, no retrading.</p>
+        </div>
+        <div class="broker-card">
+          <h3>💰 Competitive Referral Fees</h3>
+          <p>Competitive referral opportunities available for all qualified transactions we close together.</p>
+        </div>
+        <div class="broker-card">
+          <h3>⚡ Fast Term Sheets</h3>
+          <p>We issue indicative terms quickly so you can keep your client informed and maintain momentum on the deal.</p>
+        </div>
+        <div class="broker-card">
+          <h3>📞 Direct Lender Access</h3>
+          <p>You communicate directly with our principals — no middlemen, no delays, no telephone tag with account managers.</p>
+        </div>
+        <div class="broker-card">
+          <h3>🗺️ Nationwide Submissions</h3>
+          <p>We accept submissions from licensed brokers in all 50 states across all major commercial property types.</p>
+        </div>
+        <div class="broker-card">
+          <h3>👤 Dedicated Support</h3>
+          <p>Assigned relationship manager for your submissions and pipeline. You always know where your deal stands.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-dark">
+    <div class="section-inner" style="text-align:center;">
+      <div class="section-label">Register as a Broker Partner</div>
+      <h2 class="section-title section-title-dark" style="max-width:100%;margin:0 auto 1rem;">Start sending us deals</h2>
+      <p class="section-intro section-intro-dark" style="margin:0 auto 2.5rem;">Contact us directly to register as a broker partner. We look forward to building a productive and profitable long-term relationship.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="javascript:void(0)" onclick="showPage('contact')" class="btn-primary">Register as a Broker</a>
+        <a href="tel:+17276216769" style="border:1px solid rgba(255,255,255,0.4);color:rgba(255,255,255,0.85);padding:14px 32px;border-radius:4px;font-weight:500;font-size:14px;text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;display:inline-block;">+1 (727) 621-6769</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<div id="page-contact" class="page">
+
+  <div class="hero" style="padding:80px 2rem 70px;">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Get in Touch</div>
+      <h1>Request a <em>Term Sheet</em></h1>
+      <p class="hero-sub">Submit your loan inquiry or reach out directly. Our principals respond to all qualified submissions promptly.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="contact-layout">
+        <div class="contact-info-block">
+          <div>
+            <div class="section-label">Contact Information</div>
+            <h2 class="section-title">Reach us directly</h2>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Phone</span>
+            <a href="tel:+17276216769" class="contact-detail-val">+1 (727) 621-6769</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Email</span>
+            <a href="mailto:info@ajgulfblvdcapital.com" class="contact-detail-val">info@ajgulfblvdcapital.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Website</span>
+            <a href="https://www.ajgulfblvdcapital.com" target="_blank" class="contact-detail-val">www.ajgulfblvdcapital.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Address</span>
+            <span class="contact-detail-val" style="font-weight:400;font-size:15px;color:var(--text-mid);">360 Central Avenue<br>First Central Tower, Suite 800<br>St. Petersburg, FL 33701</span>
+          </div>
+          <div style="padding:1.5rem;background:var(--offwhite);border-radius:var(--radius-lg);border-left:3px solid var(--gold);">
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;">Financing is subject to underwriting review, appraisal, title review, sponsor qualifications, and final investor approval. Rates and terms are subject to change without notice. This is not a commitment to lend.</p>
+          </div>
+        </div>
+
+        <div>
+          <div style="border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-dark);margin-bottom:1.75rem;font-weight:700;">Loan Inquiry Form</h3>
+            <div class="form-grid" id="inquiryForm">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="John">
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Smith">
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="john@company.com">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+1 (000) 000-0000">
+              </div>
+              <div class="form-group full">
+                <label for="loantype">Loan Program</label>
+                <select id="loantype">
+                  <option value="">Select a loan program…</option>
+                  <option>Commercial Acquisition</option>
+                  <option>Construction Loan</option>
+                  <option>Bridge Loan</option>
+                  <option>Land Development</option>
+                  <option>Value-Add Commercial</option>
+                  <option>Multifamily Bridge</option>
+                  <option>Golf Course / Country Club</option>
+                  <option>Marina / Resort</option>
+                  <option>Specialty Asset</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="amount">Loan Amount Requested</label>
+                <input type="text" id="amount" placeholder="e.g. $2,500,000">
+              </div>
+              <div class="form-group">
+                <label for="location">Property Location</label>
+                <input type="text" id="location" placeholder="City, State">
+              </div>
+              <div class="form-group full">
+                <label for="proptype">Property Type</label>
+                <input type="text" id="proptype" placeholder="e.g. Multifamily, Marina, Golf Course…">
+              </div>
+              <div class="form-group full">
+                <label for="message">Project Summary</label>
+                <textarea id="message" placeholder="Brief overview of the project, current status, use of proceeds, and timeline…"></textarea>
+              </div>
+              <div class="form-group full">
+                <label for="role">I am a…</label>
+                <select id="role">
+                  <option value="">Select…</option>
+                  <option>Direct Borrower / Developer</option>
+                  <option>Mortgage Broker / Capital Advisor</option>
+                  <option>Commercial Real Estate Professional</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="submitForm()" class="btn-primary form-submit" style="margin-top:1.5rem;">Submit Loan Inquiry</button>
+            <div class="toast" id="formToast">✓ Your inquiry has been submitted. Our team will be in touch shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <div class="nav-logo-mark">A&J</div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--white);font-weight:700;">Gulf Blvd Capital</div>
+        </div>
+      </div>
+      <div class="footer-tagline">Private Capital. Proven Execution.</div>
+    </div>
+    <div class="footer-links-col">
+      <h4>Company</h4>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('brokers')">Broker Program</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Lending</h4>
+      <a onclick="showPage('programs')">Loan Programs</a>
+      <a onclick="showPage('specialty')">Specialty Finance</a>
+      <a onclick="showPage('programs')">Rate Sheet</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Contact</h4>
+      <a href="tel:+17276216769">+1 (727) 621-6769</a>
+      <a href="mailto:info@ajgulfblvdcapital.com">info@ajgulfblvdcapital.com</a>
+      <a onclick="showPage('contact')">Submit a Loan Inquiry</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 A&J Gulf Blvd Capital. All rights reserved. | 360 Central Avenue, First Central Tower Suite 800, St. Petersburg, FL 33701</p>
+    <p style="margin-top:6px;">Financing is subject to underwriting review, appraisal, title review, sponsor qualifications, and final investor approval. Rates and terms are subject to change without notice. This is not a commitment to lend.</p>
+  </div>
+</footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  var el = document.getElementById('page-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function submitForm() {
+  var fname = document.getElementById('fname').value.trim();
+  var email = document.getElementById('email').value.trim();
+  if (!fname || !email) {
+    alert('Please fill in at least your name and email address.');
+    return;
+  }
+  document.getElementById('formToast').classList.add('visible');
+  document.getElementById('fname').value = '';
+  document.getElementById('lname').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('amount').value = '';
+  document.getElementById('location').value = '';
+  document.getElementById('proptype').value = '';
+  document.getElementById('message').value = '';
+  document.getElementById('loantype').selectedIndex = 0;
+  document.getElementById('role').selectedIndex = 0;
+}
+</script>
+</body>
+</html>
